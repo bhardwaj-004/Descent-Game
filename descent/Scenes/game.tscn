@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cd4jg8qpvy11j"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_7yeeb"]
+[ext_resource type="PackedScene" uid="uid://dlstoyhghl8k" path="res://Scenes/player.tscn" id="1_55atb"]
+[ext_resource type="AudioStream" uid="uid://xa3voqhwehiu" path="res://Assets/Audio/gameSong.ogg" id="3_5ufbm"]
+[ext_resource type="PackedScene" uid="uid://dwf1wae4otdrb" path="res://Scenes/killzone.tscn" id="4_uctfj"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_i6ekt"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gyc8r"]
+normal = Vector2(2.53518e-06, -1)
+
+[node name="Game" type="Node"]
+script = ExtResource("1_7yeeb")
+
+[node name="GameStart" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="Player" parent="." instance=ExtResource("1_55atb")]
+
+[node name="GameMusic" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("3_5ufbm")
+volume_db = -4.0
+autoplay = true
+panning_strength = 0.0
+parameters/looping = true
+
+[node name="Killzone" parent="." instance=ExtResource("4_uctfj")]
+collision_mask = 2
+
+[node name="BottomBorder" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, 231)
+shape = SubResource("WorldBoundaryShape2D_i6ekt")
+
+[node name="TopBorder" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, -232)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_gyc8r")
+
+[node name="GameEnd" type="Timer" parent="Killzone"]
+wait_time = 0.5
+
+[node name="Endless" type="Node2D" parent="."]
+
+[connection signal="timeout" from="GameStart" to="." method="_on_game_start_timeout"]
+[connection signal="body_entered" from="Killzone" to="." method="_on_killzone_body_entered"]
+[connection signal="timeout" from="Killzone/GameEnd" to="." method="_on_game_end_timeout"]

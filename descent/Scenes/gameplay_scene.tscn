@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu4qmmt6hfw4o"]
+
+[ext_resource type="PackedScene" uid="uid://cd4jg8qpvy11j" path="res://Scenes/game.tscn" id="1_86gds"]
+[ext_resource type="PackedScene" uid="uid://c5m0wvfc5jrjx" path="res://Scenes/parallax.tscn" id="2_dfhtq"]
+[ext_resource type="PackedScene" uid="uid://wter3xrnros5" path="res://Scenes/pause_menu.tscn" id="3_cicri"]
+[ext_resource type="PackedScene" uid="uid://dn4nqdy1tjt3s" path="res://Scenes/death_menu.tscn" id="4_ba71s"]
+[ext_resource type="FontFile" uid="uid://b0hht3ircc8y8" path="res://Assets/Fonts/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" id="4_c2aa3"]
+
+[node name="GameplayScene" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.156863)
+
+[node name="Game" parent="." instance=ExtResource("1_86gds")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="Deathmenu" parent="Camera2D" instance=ExtResource("4_ba71s")]
+
+[node name="PauseMenu" parent="Camera2D" instance=ExtResource("3_cicri")]
+process_mode = 3
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -52.0
+offset_top = 10.0
+offset_right = -18.0
+offset_bottom = 93.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.23, 0.2, 0.29, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_c2aa3")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="HighScore" type="Label" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1144.0
+offset_top = 8.0
+offset_right = -1002.0
+offset_bottom = 91.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.23, 0.2, 0.29, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_c2aa3")
+theme_override_font_sizes/font_size = 32
+text = "High Score"
+
+[node name="HighScore2" type="Label" parent="HUD/HighScore"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -142.0
+offset_top = 32.0
+offset_right = 2.0
+offset_bottom = 104.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.23, 0.2, 0.29, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_c2aa3")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+
+[node name="parallax" parent="." instance=ExtResource("2_dfhtq")]
+z_index = -20
+position = Vector2(-352, 352)

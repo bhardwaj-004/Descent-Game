@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcxr1fciqik3y"]
+
+[ext_resource type="Texture2D" uid="uid://odlhg3u243vr" path="res://Assets/Sprites/Kings and Pigs/Sprites/14-TileSets/Decorations (32x32).png" id="1_6jwo2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sspef"]
+size = Vector2(66, 3.5)
+
+[node name="ThinLargePlatform" type="AnimatableBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sspef")
+
+[node name="View2" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(18.5, 1)
+texture = ExtResource("1_6jwo2")
+region_enabled = true
+region_rect = Rect2(129, 32, 31, 7)
+
+[node name="View" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-15, 1)
+texture = ExtResource("1_6jwo2")
+region_enabled = true
+region_rect = Rect2(64, 32, 38, 7)

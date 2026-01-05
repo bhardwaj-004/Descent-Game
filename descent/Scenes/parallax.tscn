@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5m0wvfc5jrjx"]
+
+[ext_resource type="Texture2D" uid="uid://dj5qxlikxgbv4" path="res://Assets/Background/BlueBg.png" id="1_mcg85"]
+[ext_resource type="Texture2D" uid="uid://b0njil4wa8dg5" path="res://Assets/Background/l0_sprite_1.png" id="2_em2wi"]
+
+[node name="parallax" type="Node2D"]
+position = Vector2(180, 278)
+
+[node name="BlueSky" type="Parallax2D" parent="."]
+scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(0, 900)
+autoscroll = Vector2(0, 30)
+repeat_times = 4
+
+[node name="BlueBg" type="Sprite2D" parent="BlueSky"]
+position = Vector2(575.5, 324.5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_mcg85")
+
+[node name="Clouds" type="Parallax2D" parent="."]
+scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(0, 900)
+autoscroll = Vector2(0, 20)
+repeat_times = 4
+
+[node name="L0Sprite1" type="Sprite2D" parent="Clouds"]
+position = Vector2(573.5, 326)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_em2wi")

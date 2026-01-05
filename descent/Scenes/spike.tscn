@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://u3whibme57am"]
+
+[ext_resource type="Texture2D" uid="uid://fej4eh1fix0q" path="res://Assets/Sprites/Spikes/spike1.png" id="1_q8356"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_right = 96.0
+offset_bottom = 31.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_q8356")
+expand_mode = 2
+stretch_mode = 1

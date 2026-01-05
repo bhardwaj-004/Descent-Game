@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4islqpwr6ous"]
+
+[ext_resource type="PackedScene" path="res://Scenes/cannon_view.tscn" id="1_olh5o"]
+[ext_resource type="Script" path="res://Scripts/cannon.gd" id="1_xybni"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6l1d"]
+size = Vector2(22, 17)
+
+[node name="Cannon" type="StaticBody2D"]
+collision_layer = 4
+script = ExtResource("1_xybni")
+ShotTime = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_b6l1d")
+
+[node name="CannonView" parent="." instance=ExtResource("1_olh5o")]
+position = Vector2(1, 0)
+
+[node name="ShotTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]

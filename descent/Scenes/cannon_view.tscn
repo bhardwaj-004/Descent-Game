@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://bjhn263of37gt"]
+
+[ext_resource type="Texture2D" uid="uid://dchreuw5o21bg" path="res://Assets/Sprites/Kings and Pigs/Sprites/10-Cannon/Idle.png" id="1_xhl2t"]
+[ext_resource type="Script" path="res://Scripts/cannon_view.gd" id="1_y5rym"]
+[ext_resource type="Texture2D" uid="uid://b3lksw875eict" path="res://Assets/Sprites/Kings and Pigs/Sprites/10-Cannon/Shoot (44x28).png" id="2_mrvt3"]
+[ext_resource type="AudioStream" uid="uid://cstomqrn2ucyp" path="res://Assets/Audio/cannon_shot_sound.wav" id="4_djdy5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3p4f"]
+atlas = ExtResource("1_xhl2t")
+region = Rect2(0, 0, 44, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0w6a"]
+atlas = ExtResource("2_mrvt3")
+region = Rect2(0, 0, 44, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cphr4"]
+atlas = ExtResource("2_mrvt3")
+region = Rect2(44, 0, 44, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4pl3"]
+atlas = ExtResource("2_mrvt3")
+region = Rect2(88, 0, 44, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5nu7"]
+atlas = ExtResource("2_mrvt3")
+region = Rect2(132, 0, 44, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sa0i2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3p4f")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0w6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cphr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4pl3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5nu7")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 7.0
+}]
+
+[node name="CannonView" type="Node2D"]
+script = ExtResource("1_y5rym")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-8, 0)
+sprite_frames = SubResource("SpriteFrames_sa0i2")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CannonShotSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_djdy5")
+volume_db = -15.0
+max_distance = 432.0
+attenuation = 1.41421
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

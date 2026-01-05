@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dliyu62t7xbb6"]
+
+[ext_resource type="Texture2D" uid="uid://drhwh3accghey" path="res://Assets/Sprites/Kings and Pigs/Sprites/10-Cannon/Cannon Ball.png" id="1_i2uer"]
+[ext_resource type="Script" path="res://Scripts/cannon_ball.gd" id="1_pryao"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vq2wr"]
+radius = 3.0
+
+[node name="CannonBall" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_pryao")
+speed = -100.0
+
+[node name="BallView" type="Sprite2D" parent="."]
+position = Vector2(-5, -3)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_i2uer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vq2wr")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
